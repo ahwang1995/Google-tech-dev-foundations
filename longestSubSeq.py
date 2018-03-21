@@ -39,29 +39,29 @@ def find_longest_word_in_string(letters, words):
     letterInd = [0] * len(words)
     numFound = [0] * len(words)
     matchingWords = []
-    #create tuples initialized to zero
+    #until word list is empty check if the next letter in the word is in the input string
     while words:
         for word in words:
             curInd = words.index(word)
-            print(words)
-            print(matchingWords)
             firstFound = letters.find(word[numFound[curInd]],letterInd[curInd])
+            #if the letter is found then increment the number of letters found correspoding to the word
+            #track the first position the word's letter is found in the string
             if(firstFound >= 0):
                 letterInd[curInd] = firstFound
                 numFound[curInd] += 1
+                #if the full word is found then delete the word from list and add it to the complete one
                 if(numFound[curInd] == len(word)):
                     matchingWords.append(word)
                     print curInd
                     del letterInd[curInd]
                     del numFound[curInd]
                     del words[curInd]
+            #if the letter is not found then delete
             else:
                 del letterInd[curInd]
                 del numFound[curInd]
                 del words[curInd]
-    print(words)
-    print(matchingWords)
-    print(max(matchingWords,key=len))
+
 
 
 
